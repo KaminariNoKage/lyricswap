@@ -1,0 +1,17 @@
+extends layout
+
+block content
+	script(src='http://code.jquery.com/jquery.js')
+	script(src='/javascripts/find.js'))
+	h1= title
+	p Welcome to #{title}
+	div(value="Enter data here")
+		| Enter Artist Name: 
+		input(type="text", id="artist_name")
+		br
+		| Enter Song Name: 
+		input(type="test", id="song_name")
+		br
+		input(type="submit", value="Find Song", id="find_song")
+	div(id="lyric_container")
+		p #{lyrics}
