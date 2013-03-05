@@ -30,6 +30,7 @@ app.configure('development', function(){
 });
 
 app.get('/', routes.index);
+app.get('/about', song.about);
 
 app.post('/song/lyrics', song.getLyrics);
 
