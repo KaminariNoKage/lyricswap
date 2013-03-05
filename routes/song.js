@@ -36,13 +36,14 @@ exports.getLyrics = function(req, res){
 			};
 		};
 
+		var artist = req.body.artist
+			, songname = req.body.title;
 		//sweeps through a list of songs until finds something with lyrics
 		var tryget = function(songid, callback){
 			var successCallback = function(modelOrCollection) {
-				console.log("Trying to get lyrics");
-				//console.log(modelOrCollection);
 				var lyric_extract = modelOrCollection.attributes.lyrics_body
-					, lyrics = lyric_extract.replace("******* This Lyrics is NOT for Commercial use *******", "");
+					, copyright = modelOrCollection.attributes.lyrics_copyright
+					, lyrics = lyric_extract.replace("******* This Lyrics is NOT for Commercial use *******", copyright);
 
 				callback(lyrics);
 			};
@@ -64,10 +65,12 @@ exports.getLyrics = function(req, res){
 
 				if (all[x] !== undefined && all[x].foreign_ids[y] !== undefined){
 					var song_id = flt_songs[x].foreign_ids[y].foreign_id;
-					console.log(song_id);
+
 					tryget(song_id.replace("musixmatch-WW:song:", ""), function(lyrics){
 						if (lyrics){
-							req.session.user = {active: lyrics};
+							var artist = " by " + flt_songs[x].artist_name
+								, songname = flt_songs[x].title;
+							req.session.user = {artist: artist, songname: songname, active: lyrics};
 							return res.redirect('/');
 						}
 						else{

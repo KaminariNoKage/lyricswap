@@ -1,5 +1,7 @@
 $(document).ready(function(){
 
+	var searchwords = ["I am", "I need a hero", "let your heart", "my mind", "step away", "superhuman", "someone save me", "save me now", "the morning light", "world gone mad"]
+
 	$("#find_song").click(function(){
 		/*if ($("#artist_name").val() == ""){
 			alert("Please Enter an Artist's Name");
@@ -17,32 +19,37 @@ $(document).ready(function(){
 		};
 	});
 
-	$(".swap").click(function(){
-		var redir = this.id;
+	var getSelected = function(){
+		var text = '';
+		if (window.getSelection){
+			t = window.getSelection();
+		}else if (document.getSelection){
+			t = document.getSelection();
+		}else if (document.selection){
+			t = document.selection.createRange().text;
+		};
+		return t;
+	};
+
+	var wrap = function(selected){
+		return $('<a>').attr('href', '#').attr('class', 'swap').text(selected);
+	};
+
+	$("#lyric_container").on("click", ".swap", function(){
+		var redir = $(this).text();
 		$.post("/song/lyrics", {artist: null, title: redir}, function(){
 			location.reload();
 		});
 		return false;
 	});
 
-	//Go through lyrics and replace text with Links
-	//which, when clicked, change the displayed song
-	var replaceLyrics = function(keywords){
-		//Get the content of the div containing the lyrics
-		var all_lyrics = $("#lyric_container").text();
-		console.log(all_lyrics);
-		//Filter through and replace the key words with their respective links
-		//Class name: .swap, id: song/keywords with lead to the songs
-		for(var i=0; i < keywords.length; i++){
-			var curstring = keywords[i];
-			if (all_lyrics.contains(curstring)){
-
-				//get found text,
-
-			};
+	$("#lyric_container").mouseup(function(){
+		var string = getSelected();
+		if (string != ""){
+			var newString = $('<div>').append(wrap(string)).html()
+			, newHtml = $("#lyric_container").html().replace(string, newString);
+			$("#lyric_container").html(newHtml);
 		};
-	};
-
-	replaceLyrics(searchwords);
+	});
 
 })

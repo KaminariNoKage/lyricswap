@@ -1,14 +1,80 @@
 body {
   padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-  background: black;
+  font: 18px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background: #000033;
   color: white;
 }
 
-a {
-  color: #00B7FF;
+#navbar{
+	position: relative;
+	top: -60px;
+	left: -80px;
+	width: 50%;
+	margin-bottom: 20px;
+	border-radius: 30px;
+	border-bottom: 10px #707070 double;
+}
+
+#navbar ul, li{
+	display: inline-block;
+	padding-left:20px;
+	text-decoration: none;
+	font-size: 15px;
+	font-weight: bold;
+	opacity: 0.90;
+}
+
+#title{
+	font-size: 30px;
+	margin-left: 100px;
+	margin-right: 40px;
+	padding-right: 10px;
+	border-right: 5px white double;
+	border-radius: 15px;
+}
+
+#navbar a:link, a:visited{
+	text-decoration: none;
+	color:white;
+}
+
+#navbar a:hover{
+	opacity: 0.5;
+}
+
+#main{
+	position: relative;
+}
+
+#search_container{
+	float: left;
+	margin-right: 150px;
+	border-left: 10px white double;
+	padding-left: 30px;
+	border-radius: 80px;
 }
 
 #lyric_container{
+	float: left;
 	font-size: 20px;
+	max-width: 50%;
+	min-width: 50%;
+}
+
+#lyric_container a {
+  color: #00B7FF;
+}
+
+#song_info{
+	font-size: 20px;
+	font-weight: bold;
+	opacity: 0.90;
+	padding-left: 20px;
+}
+
+#lines {
+	border-radius: 30px;
+	border-top: 10px #707070 double;
+	padding-top: 20px;
+	padding-left:20px;
 }
