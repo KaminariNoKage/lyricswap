@@ -10,5 +10,9 @@
     "jade": "*",
     "musixmatch": "0.1.0",
     "echojs": "*"
+  },
+  "engines": {
+    "node": "0.8.14",
+    "npm": "1.1.65"
   }
 }
