@@ -1,4 +1,4 @@
 LyricSwap
 =========
 
-[Visit to Website](ttp://lyricswap.herokuapp.com/)
+[Visit to Website](http://lyricswap.herokuapp.com/)
